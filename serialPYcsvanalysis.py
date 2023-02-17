@@ -32,7 +32,7 @@ mouse = {'H01': ['male', 'Med'],
 df = pd.DataFrame()
 
 for h in mouse:
-    path =r"C:\Users\break\Documents\testing pyhon"
+    path =r"C:\Users\break\Documents\testing pyhon\Session X"
     filenames = glob.glob(path + "/*.csv")
     for p in filenames: 
         tokens = p.split('\\')
@@ -47,20 +47,7 @@ for h in mouse:
     
     csv = pd.read_csv(p, header=None)
     print(csv)
-    
-    #readjusts the 9 and 0 index for licks
-    for i in np.arange(len(csv)):
-        if csv.iloc[i][0].startswith('9 ') == True :
-            newlabel = csv.iloc[i][0].split()
-            newlabel[0] = '9 9 '
-            adjustedlickstamp = "".join(newlabel)
-            csv.iloc[i] = adjustedlickstamp
-        elif csv.iloc[i][0].startswith('0 ') == True :
-            newlabel = csv.iloc[i][0].split()
-            newlabel[0] = '0 0 '
-            adjustedlickstamp = "".join(newlabel)
-            csv.iloc[i] = adjustedlickstamp
-            
+                
     csv = pd.DataFrame(csv[0].str.split(' ',2).tolist(),
                                      columns = ['index','step', 'timestamp'])
     
@@ -71,7 +58,7 @@ for h in mouse:
                 }
     
     
-    dictionary = { 'mousename':[],'mousesex':[],'sessionday':[], 'trialtype':[], 
+    dictionary = { 'mousename':[],'mousesex':[],'session':[], 'trialtype':[], 
                  'cueslickprobability':[],'cuesavglickspercue':[], 'cuesavglatencypercue':[], 
                  'firstcuelickprobability':[], 'firstavglickspercue':[], 'firstavglatencypercue':[], 
                  'secondcuelickprobability':[], 'secondavglickspercue':[], 'secondavglatencypercue':[], 
